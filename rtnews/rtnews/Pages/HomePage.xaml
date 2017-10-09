@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:rtnews"
+             x:Class="rtnews.HomePage"
+             xmlns:i18n="clr-namespace:rtnews;assembly=rtnews"
+             xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions">
+    <ContentPage.Content>
+        <StackLayout>
+            <local:InfiniteListView x:Name="mListView"
+                                    IsPullToRefreshEnabled="True"
+                                    ItemsSource="{Binding TextNewsList}"
+                                    SelectedItem="{Binding SelectedNews}"
+                                    RowHeight="100">
+                <local:InfiniteListView.Header>
+                    <controls:CarouselViewControl x:Name="mCarouse"
+                                                  HeightRequest="160"
+                                                  HorizontalOptions="Fill"
+                                                  ShowIndicators="True"
+                                                  ItemsSource="{Binding ImageNewsList}"
+                                                  BackgroundColor="Red">
+                        <controls:CarouselViewControl.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding ImageUrl}">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ImageClick}" NumberOfTapsRequired="1" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </DataTemplate>
+                        </controls:CarouselViewControl.ItemTemplate>
+                    </controls:CarouselViewControl>
+                </local:InfiniteListView.Header>
+                <local:InfiniteListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" Padding="10">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text=">>" FontAttributes="Bold" />
+                                    <Label Text="{Binding Title}" FontAttributes="Bold" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{i18n:Translate Count}" />
+                                        <Label Text="{Binding Count}" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                        <Label Text="{i18n:Translate Time}" />
+                                        <Label Text="{Binding Time}" />
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout>
+                                    <Label Text="{Binding Text}" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </local:InfiniteListView.ItemTemplate>
+            </local:InfiniteListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

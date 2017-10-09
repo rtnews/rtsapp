@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:rtnews"
+            xmlns:i18n="clr-namespace:rtnews;assembly=rtnews"
+            x:Class="rtnews.MainPage"
+            Title="{i18n:Translate NewsName}">
+    
+    <local:HomePage x:Name="mHomePage" Title="{i18n:Translate Title0}" />
+    <local:NewsPage x:Name="mNewPage0" Title="{i18n:Translate Title1}" />
+    <local:NewsPage x:Name="mNewPage1" Title="{i18n:Translate Title2}" />
+    <local:DutyPage x:Name="mDutyPage" Title="{i18n:Translate Title3}" />
+    
+</TabbedPage>

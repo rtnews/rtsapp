@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:rtnews;assembly=rtnews"
+             x:Class="rtnews.DutyPage">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Padding="10">
+            <StackLayout Padding="50">
+                <Image Source="{Binding DutyUrl}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="20">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{i18n:Translate DutyLeader}" />
+                    <Label Text="{Binding LeaderName}" />
+                    <Label Text="{Binding LeaderId}" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{i18n:Translate LeaderPart}" />
+                    <Label Text="{Binding LeaderPart}" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{i18n:Translate mDutyPart}" />
+                    <Label Text="{Binding DutyName}" />
+                    <Label Text="{Binding DutyId}" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
