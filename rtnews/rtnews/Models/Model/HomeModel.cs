@@ -14,7 +14,7 @@ namespace rtnews
             }
         }
 
-        public List<TextNews> TextNewsList
+        public List<ImageNews> TextNewsList
         {
             get
             {
@@ -37,11 +37,11 @@ namespace rtnews
         public HomeModel()
         {
             mImageNewsList = new List<ImageNews>();
-            mTextNewsList = new List<TextNews>();
+            mTextNewsList = new List<ImageNews>();
         }
 
         List<ImageNews> mImageNewsList;
-        List<TextNews> mTextNewsList;
+        List<ImageNews> mTextNewsList;
 
         INavigation mNavigation;
     }

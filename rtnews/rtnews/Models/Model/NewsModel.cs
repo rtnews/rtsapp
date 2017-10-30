@@ -6,14 +6,14 @@ namespace rtnews
 {
     public class NewsModel
     {
-        async void RunSelected(TextNews nTextNews)
+        async void RunSelected(ImageNews nImageNews)
         {
-            var infoPage = new InfoPage(nTextNews);
+            var infoPage = new InfoPage(nImageNews);
             var navPage = new NavigationPage(infoPage);
             await mNavigation.PushModalAsync(navPage);
         }
 
-        public TextNews SelectedValue
+        public ImageNews SelectedValue
         {
             get
             {
@@ -29,13 +29,13 @@ namespace rtnews
                 this.RunSelected(mTextNews);
             }
         }
-        TextNews mTextNews;
+        ImageNews mTextNews;
 
-        public List<TextNews> TextNewsList
+        public List<ImageNews> TextNewsList
         {
             get
             {
-                return mTextNewsList;
+                return mImageNewsList;
             }
         }
 
@@ -53,10 +53,10 @@ namespace rtnews
 
         public NewsModel()
         {
-            mTextNewsList = new List<TextNews>();
+            mImageNewsList = new List<ImageNews>();
         }
 
-        protected List<TextNews> mTextNewsList;
+        protected List<ImageNews> mImageNewsList;
         protected INavigation mNavigation;
     }
 }
