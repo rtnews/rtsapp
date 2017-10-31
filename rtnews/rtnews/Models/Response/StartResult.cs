@@ -14,7 +14,7 @@ namespace rtnews
             nSerialize.RunStream(mImageNews0List, "News0List", "ImageNews");
             nSerialize.RunStream(mImageNews1List, "News1List", "ImageNews");
 
-            nSerialize.RunStream(mDutyInfo, "DutyInfo");
+            nSerialize.RunStream(mDpartList, "Dparts", "Dpart");
         }
 
         public void RunInit()
@@ -25,17 +25,17 @@ namespace rtnews
             var news0Rep = News0Rep.Instance();
             news0Rep.RunInit(mImageNews0List);
 
-            var news1Rep = News0Rep.Instance();
+            var news1Rep = News1Rep.Instance();
             news1Rep.RunInit(mImageNews1List);
 
             var dutyRep = DutyRep.Instance();
-            dutyRep.RunInit(mDutyInfo);
+            dutyRep.RunInit(mDpartList);
         }
 
         List<ImageNews> mImageNewsList = new List<ImageNews>();
         List<ImageNews> mImageNews0List = new List<ImageNews>();
         List<ImageNews> mImageNews1List = new List<ImageNews>();
 
-        DutyInfo mDutyInfo = new DutyInfo();
+        List<Dpart> mDpartList = new List<Dpart>();
     }
 }

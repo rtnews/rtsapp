@@ -121,10 +121,10 @@
     <value>己阅读:</value>
   </data>
   <data name="DutyLeader" xml:space="preserve">
-    <value>值班领导:</value>
+    <value>值班领导</value>
   </data>
   <data name="LeaderPart" xml:space="preserve">
-    <value>值班科室:</value>
+    <value>值班科室</value>
   </data>
   <data name="NewsName" xml:space="preserve">
     <value>上高公安</value>

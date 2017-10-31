@@ -20,6 +20,16 @@ namespace rtnews
             return "api/news/GetHomeRep";
         }
 
+        public override void RunInit(List<ImageNews> nImageNewsList)
+        {
+            base.RunInit(nImageNewsList);
+
+            foreach (var i in mImageNewsList)
+            {
+                i.RunInit();
+            }
+        }
+
         public override void RunInit()
         {
             base.RunInit();

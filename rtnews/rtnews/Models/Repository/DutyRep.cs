@@ -12,7 +12,7 @@ namespace rtnews
         {
             base.Serialize(nSerialize);
 
-            nSerialize.RunStream(mDutyInfo, "DutyInfo");
+            nSerialize.RunStream(mDpartList, "DpartList", "Dpart");
         }
 
         public override string StreamName()
@@ -25,23 +25,38 @@ namespace rtnews
             return "api/news/GetDutyRep";
         }
 
-        public void RunInit(DutyInfo nDutyInfo)
+        public Dpart GetLeader()
         {
-            mDutyInfo = nDutyInfo;
+            if (mDpartList.Count < 1)
+            {
+                return null;
+            }
+            return mDpartList[0];
+        }
+
+        public Dpart GetDpart()
+        {
+            if (mDpartList.Count < 2)
+            {
+                return null;
+            }
+            return mDpartList[1];
+        }
+
+        public void RunInit(List<Dpart> nDeparts)
+        {
+            mDpartList.Clear();
+
+            foreach (var i in nDeparts)
+            {
+                mDpartList.Add(i);
+            }
 
             mUpdateTime = DateTime.Now;
 
-            this.RunSave();
+            //this.RunSave();
         }
 
-        public DutyInfo DutyInfo
-        {
-            get
-            {
-                return mDutyInfo;
-            }
-        }
-
-        DutyInfo mDutyInfo = new DutyInfo();
+        List<Dpart> mDpartList = new List<Dpart>();
     }
 }

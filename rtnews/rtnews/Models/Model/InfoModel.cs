@@ -12,9 +12,9 @@ namespace rtnews
         void LoadValues(ImageNews nImageNews)
         {
             var uconfig = UConfig.Instance();
-            string path = uconfig.ApiUrl + "upload/";
-            path += nImageNews.Name; path += "/image_";
-            for (int i = 1; i <= nImageNews.Count; i++)
+            string path = uconfig.ApiUrl + "Upload/ImageNews/";
+            path += nImageNews.Name; path += "/page_";
+            for (int i = 0; i < nImageNews.Count; i++)
             {
                 string imageUrl = path + i;
                 imageUrl += ".png";

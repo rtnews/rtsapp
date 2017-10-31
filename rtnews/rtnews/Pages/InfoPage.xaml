@@ -10,7 +10,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Image>
+                            <Image Aspect="Fill">
                                 <Image.Source>
                                     <UriImageSource Uri="{Binding}" />
                                 </Image.Source>

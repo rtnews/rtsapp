@@ -71,7 +71,7 @@ namespace rtnews.Strings {
         }
         
         /// <summary>
-        ///   查找类似 值班领导: 的本地化字符串。
+        ///   查找类似 值班领导 的本地化字符串。
         /// </summary>
         internal static string DutyLeader {
             get {
@@ -80,7 +80,7 @@ namespace rtnews.Strings {
         }
         
         /// <summary>
-        ///   查找类似 值班科室: 的本地化字符串。
+        ///   查找类似 值班科室 的本地化字符串。
         /// </summary>
         internal static string LeaderPart {
             get {

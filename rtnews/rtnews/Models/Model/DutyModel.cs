@@ -11,7 +11,28 @@ namespace rtnews
     {
         void LoadValues()
         {
+            var dutyRep = DutyRep.Instance();
+            var leader = dutyRep.GetLeader();
+            var dpart = dutyRep.GetDpart();
+            if (null != leader)
+            {
+                var config = UConfig.Instance();
+                mDutyUrl = config.ApiUrl + "Upload/Clerk/";
+                mDutyUrl += leader.Icon;
+                mDutyUrl += ".png";
 
+                mLeaderId = leader.ClerkId;
+                mLeaderName = leader.Name;
+                mLeaderPart = leader.Depart;
+                mLeaderPhone = leader.Phone;
+            }
+            if (dpart != null)
+            {
+                mDutyId = dpart.ClerkId;
+                mDutyName = dpart.Name;
+                mDutyPart = dpart.Depart;
+                mDutyPhone = dpart.Phone;
+            }
         }
 
         public string DutyUrl
@@ -46,7 +67,15 @@ namespace rtnews
             }
         }
 
-        public int DutyId
+        public string LeaderPhone
+        {
+            get
+            {
+                return mLeaderPhone;
+            }
+        }
+
+        public string DutyId
         {
             get
             {
@@ -67,6 +96,14 @@ namespace rtnews
             get
             {
                 return mDutyPart;
+            }
+        }
+
+        public string DutyPhone
+        {
+            get
+            {
+                return mDutyPhone;
             }
         }
 
@@ -94,9 +131,11 @@ namespace rtnews
         string mLeaderId;
         string mLeaderName;
         string mLeaderPart;
+        string mLeaderPhone;
 
         string mDutyName;
         string mDutyPart;
-        int mDutyId;
+        string mDutyId;
+        string mDutyPhone;
     }
 }

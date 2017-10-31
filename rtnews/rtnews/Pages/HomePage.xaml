@@ -10,7 +10,7 @@
             <local:InfiniteListView x:Name="mListView"
                                     IsPullToRefreshEnabled="True"
                                     ItemsSource="{Binding TextNewsList}"
-                                    SelectedItem="{Binding SelectedNews}"
+                                    SelectItemCommand="{Binding SelectedNewsCommand}"
                                     RowHeight="100">
                 <local:InfiniteListView.Header>
                     <controls:CarouselViewControl x:Name="mCarouse"

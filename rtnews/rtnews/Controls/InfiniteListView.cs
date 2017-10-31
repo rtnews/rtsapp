@@ -15,6 +15,15 @@ namespace rtnews
             set { SetValue(LoadMoreCommandProperty, value); }
         }
 
+        public static readonly BindableProperty SelectItemCommandProperty
+            = BindableProperty.Create("SelectItemCommand", typeof(ICommand), typeof(InfiniteListView));
+
+        public ICommand SelectItemCommand
+        {
+            get { return (ICommand)GetValue(SelectItemCommandProperty); }
+            set { SetValue(SelectItemCommandProperty, value); }
+        }
+
         void OnItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
             var items = ItemsSource as IList;
@@ -28,9 +37,22 @@ namespace rtnews
             }
         }
 
+        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (SelectItemCommand != null && SelectItemCommand.CanExecute(null))
+            {
+                SelectItemCommand.Execute(e.SelectedItem);
+            }
+
+            if (((ListView)sender).SelectedItem == null)
+                return;
+            ((ListView)sender).SelectedItem = null;
+        }
+
         public InfiniteListView()
         {
             ItemAppearing += OnItemAppearing;
+            ItemSelected += OnItemSelected;
         }
     }
 }

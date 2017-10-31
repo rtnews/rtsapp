@@ -53,6 +53,21 @@ namespace rtnews
             request.BeginGetResponse(GetCallback, request);
         }
 
+        public void RunHttpPost()
+        {
+            if ((DateTime.Now - mUpdateTime).TotalMinutes < 10)
+            {
+                return;
+            }
+
+            UConfig uConfig = UConfig.Instance();
+            string url = uConfig.ApiUrl + this.GetUrl();
+
+            var request = WebRequest.CreateHttp(url);
+            request.Method = "POST";
+            request.BeginGetResponse(GetCallback, request);
+        }
+
         protected abstract string GetUrl();
 
         public virtual void RunInit()

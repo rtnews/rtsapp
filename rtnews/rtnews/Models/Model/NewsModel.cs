@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace rtnews
@@ -13,21 +14,13 @@ namespace rtnews
             await mNavigation.PushModalAsync(navPage);
         }
 
-        public ImageNews SelectedValue
+        public ICommand SelectedNewsCommand { get; set; }
+
+        public void RunSelectedNews(object nSelectItem)
         {
-            get
-            {
-                return mTextNews;
-            }
-            set
-            {
-                if (null == value)
-                {
-                    return;
-                }
-                mTextNews = value;
-                this.RunSelected(mTextNews);
-            }
+            if (null == nSelectItem) return;
+            mTextNews = (ImageNews)nSelectItem;
+            this.RunSelected(mTextNews);
         }
         ImageNews mTextNews;
 
@@ -54,6 +47,8 @@ namespace rtnews
         public NewsModel()
         {
             mImageNewsList = new List<ImageNews>();
+
+            SelectedNewsCommand = new Command(RunSelectedNews);
         }
 
         protected List<ImageNews> mImageNewsList;

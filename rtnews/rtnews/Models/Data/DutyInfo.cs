@@ -6,90 +6,77 @@ using System.Threading.Tasks;
 
 namespace rtnews
 {
-    public class DutyInfo : IStream
+    public class Dpart : IStream
     {
         public void Serialize(ISerialize nSerialize, string nName, sbyte nCount)
         {
-            nSerialize.RunNumber(ref mDutyUrl, "DutyUrl");
+            nSerialize.RunNumber(ref mIdentifier, "Identifier");
 
-            nSerialize.RunNumber(ref mLeaderId, "LeaderId");
-            nSerialize.RunNumber(ref mLeaderName, "LeaderName");
-            nSerialize.RunNumber(ref mLeaderPart, "LeaderPart");
-
-            nSerialize.RunNumber(ref mDutyPart, "DutyPart");
-            nSerialize.RunNumber(ref mDutyName, "DutyName");
-            nSerialize.RunNumber(ref mDutyId, "DutyId");
+            nSerialize.RunNumber(ref mClerkId, "ClerkId");
+            nSerialize.RunNumber(ref mName, "Name");
+            nSerialize.RunNumber(ref mDepart, "Depart");
+            nSerialize.RunNumber(ref mPhone, "Phone");
+            nSerialize.RunNumber(ref mIcon, "Icon");
         }
 
         public bool IsDefault()
         {
-            return ((0 == mDutyId) || ("" == mDutyName));
+            return ((0 == mIdentifier) || ("" == mClerkId));
         }
 
-        public string DutyUrl
+        public int Identifier
         {
             get
             {
-                return mDutyUrl;
+                return mIdentifier;
             }
         }
 
-        public string LeaderId
+        public string ClerkId
         {
             get
             {
-                return mLeaderId;
+                return mClerkId;
             }
         }
 
-        public string LeaderName
+        public string Name
         {
             get
             {
-                return mLeaderName;
+                return mName;
             }
         }
 
-        public string LeaderPart
+        public string Depart
         {
             get
             {
-                return mLeaderPart;
+                return mDepart;
             }
         }
 
-        public int DutyId
+        public string Phone
         {
             get
             {
-                return mDutyId;
+                return mPhone;
             }
         }
 
-        public string DutyName
+        public string Icon
         {
             get
             {
-                return mDutyName;
+                return mIcon;
             }
         }
 
-        public string DutyPart
-        {
-            get
-            {
-                return mDutyPart;
-            }
-        }
-
-        string mDutyUrl;
-
-        string mLeaderId;
-        string mLeaderName;
-        string mLeaderPart;
-
-        string mDutyName;
-        string mDutyPart;
-        int mDutyId;
+        int mIdentifier;
+        string mClerkId;
+        string mName;
+        string mDepart;
+        string mPhone;
+        string mIcon;
     }
 }

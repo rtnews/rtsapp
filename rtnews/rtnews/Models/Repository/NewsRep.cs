@@ -18,7 +18,7 @@ namespace rtnews
             nSerialize.RunStream(mImageNewsList, "ImageNewsList", "ImageNews");
         }
 
-        public void RunInit(List<ImageNews> nImageNewsList)
+        public virtual void RunInit(List<ImageNews> nImageNewsList)
         {
             mImageNewsList.Clear();
 
@@ -28,7 +28,7 @@ namespace rtnews
             }
             mUpdateTime = DateTime.Now;
 
-            this.RunSave();
+            //this.RunSave();
         }
 
         protected List<ImageNews> mImageNewsList = new List<ImageNews>();

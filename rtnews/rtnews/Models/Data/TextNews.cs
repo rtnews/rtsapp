@@ -6,28 +6,28 @@ namespace rtnews
     {
         public void Serialize(ISerialize nSerialize, string nName, sbyte nCount)
         {
-            nSerialize.RunNumber(ref mId, "mId");
-            nSerialize.RunNumber(ref mName, "mName");
-            nSerialize.RunNumber(ref mFileName, "mFileName");
-            nSerialize.RunNumber(ref mTitle, "mTitle");
-            nSerialize.RunNumber(ref mText, "mBody");
-            nSerialize.RunNumber(ref mCount, "mCount");
-            nSerialize.RunNumber(ref mTime, "mTime");
+            nSerialize.RunNumber(ref mId, "Id");
+            nSerialize.RunNumber(ref mName, "Name");
+            nSerialize.RunNumber(ref mFileName, "FileName");
+            nSerialize.RunNumber(ref mTitle, "Title");
+            nSerialize.RunNumber(ref mText, "Text");
+            nSerialize.RunNumber(ref mCount, "Count");
+            nSerialize.RunNumber(ref mTime, "Time");
         }
 
         public bool IsDefault()
         {
-            return ( (0 == mId) || ("" == mName) );
+            return ( ("" == mId) || ("" == mName) );
         }
 
-        public int ID
+        public string ID
         {
             get
             {
                 return mId;
             }
         }
-        int mId = 0;
+        string mId = "";
 
         public string Name
         {
