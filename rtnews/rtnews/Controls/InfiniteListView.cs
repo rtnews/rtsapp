@@ -44,9 +44,9 @@ namespace rtnews
                 SelectItemCommand.Execute(e.SelectedItem);
             }
 
-            if (((ListView)sender).SelectedItem == null)
+            if (this.SelectedItem == null)
                 return;
-            ((ListView)sender).SelectedItem = null;
+            this.SelectedItem = null;
         }
 
         public InfiniteListView()

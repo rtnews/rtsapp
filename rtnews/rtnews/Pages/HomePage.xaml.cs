@@ -16,5 +16,13 @@ namespace rtnews
         {
             InitializeComponent();
         }
+
+        protected override void OnAppearing()
+        {
+            HomeModel homeModel = (HomeModel)BindingContext;
+            homeModel.ResetSelectNews();
+
+            base.OnAppearing();
+        }
     }
 }

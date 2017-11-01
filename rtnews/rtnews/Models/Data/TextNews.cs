@@ -2,7 +2,7 @@
 
 namespace rtnews
 {
-    public class TextNews : IStream
+    public class TextNews : IStream, IEquatable<TextNews>
     {
         public void Serialize(ISerialize nSerialize, string nName, sbyte nCount)
         {
@@ -18,6 +18,11 @@ namespace rtnews
         public bool IsDefault()
         {
             return ( ("" == mId) || ("" == mName) );
+        }
+
+        public bool Equals(TextNews other)
+        {
+            return (mId == other.ID);
         }
 
         public string ID

@@ -13,8 +13,10 @@ namespace rtnews
         {
             InitializeComponent();
 
-            var mainPage = new MainPage();
-            MainPage = new NavigationPage(mainPage);
+            this.MainPage = new NavigationPage();
+
+            var mainPage = new MainPage(MainPage.Navigation);
+            MainPage.Navigation.PushAsync(mainPage);
         }
 
         protected override void OnStart()

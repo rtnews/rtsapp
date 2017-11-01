@@ -10,8 +10,7 @@ namespace rtnews
         async void RunSelected(ImageNews nImageNews)
         {
             var infoPage = new InfoPage(nImageNews);
-            var navPage = new NavigationPage(infoPage);
-            await mNavigation.PushModalAsync(navPage);
+            await mNavigation.PushAsync(infoPage);
         }
 
         public ICommand SelectedNewsCommand { get; set; }
@@ -19,9 +18,16 @@ namespace rtnews
         public void RunSelectedNews(object nSelectItem)
         {
             if (null == nSelectItem) return;
+            if (mTextNews == nSelectItem) return;
             mTextNews = (ImageNews)nSelectItem;
             this.RunSelected(mTextNews);
         }
+
+        public void ResetSelectNews()
+        {
+            mTextNews = null;
+        }
+
         ImageNews mTextNews;
 
         public List<ImageNews> TextNewsList

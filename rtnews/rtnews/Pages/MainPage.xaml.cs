@@ -9,24 +9,27 @@ namespace rtnews
 {
     public partial class MainPage : TabbedPage
     {
-        public MainPage()
+        public MainPage(INavigation navigation)
         {
             InitializeComponent();
 
+            this.BarBackgroundColor = Color.White;
+            this.BarTextColor = Color.FromHex("#004080");
+
             var homeModel = new HomeModel();
-            homeModel.Navigation = Navigation;
+            homeModel.Navigation = navigation;
             mHomePage.BindingContext = homeModel;
 
             var new0Model = new News0Model();
-            new0Model.Navigation = Navigation;
+            new0Model.Navigation = navigation;
             mNewPage0.BindingContext = new0Model;
 
             var new1Model = new News1Model();
-            new1Model.Navigation = Navigation;
+            new1Model.Navigation = navigation;
             mNewPage1.BindingContext = new1Model;
 
             var dutyModel = new DutyModel();
-            dutyModel.Navigation = Navigation;
+            dutyModel.Navigation = navigation;
             mDutyPage.BindingContext = dutyModel;
         }
     }
