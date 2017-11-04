@@ -62,7 +62,7 @@ namespace rtnews.Strings {
         }
         
         /// <summary>
-        ///   查找类似 己阅读: 的本地化字符串。
+        ///   查找类似 己阅读： 的本地化字符串。
         /// </summary>
         internal static string Count {
             get {
@@ -89,6 +89,33 @@ namespace rtnews.Strings {
         }
         
         /// <summary>
+        ///   查找类似 要闻详情 的本地化字符串。
+        /// </summary>
+        internal static string News0 {
+            get {
+                return ResourceManager.GetString("News0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 通知详情 的本地化字符串。
+        /// </summary>
+        internal static string News1 {
+            get {
+                return ResourceManager.GetString("News1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 动态详情 的本地化字符串。
+        /// </summary>
+        internal static string News2 {
+            get {
+                return ResourceManager.GetString("News2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 上高公安 的本地化字符串。
         /// </summary>
         internal static string NewsName {
@@ -98,7 +125,16 @@ namespace rtnews.Strings {
         }
         
         /// <summary>
-        ///   查找类似 时间: 的本地化字符串。
+        ///   查找类似 对不起，没有获取到数据 的本地化字符串。
+        /// </summary>
+        internal static string NoData {
+            get {
+                return ResourceManager.GetString("NoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 时间： 的本地化字符串。
         /// </summary>
         internal static string Time {
             get {

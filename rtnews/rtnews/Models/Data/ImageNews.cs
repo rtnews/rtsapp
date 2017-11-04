@@ -8,8 +8,9 @@ namespace rtnews
         public void RunInit()
         {
             var uconfig = UConfig.Instance();
-            mImageUrl = uconfig.ApiUrl + "Upload/ImageNews/";
-            mImageUrl += mName;
+            mImageUrl = uconfig.ApiUrl;
+            mImageUrl += "Upload/ImageNews/";
+            mImageUrl += Name;
             mImageUrl += "/page_i.png";
         }
 

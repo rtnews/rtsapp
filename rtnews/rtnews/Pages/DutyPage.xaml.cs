@@ -16,5 +16,13 @@ namespace rtnews
         {
             InitializeComponent();
         }
+
+        protected override void OnAppearing()
+        {
+            DutyModel dutyModel = (DutyModel)BindingContext;
+            dutyModel.OnAppearing();
+
+            base.OnAppearing();
+        }
     }
 }

@@ -4,27 +4,33 @@
              xmlns:i18n="clr-namespace:rtnews;assembly=rtnews"
              x:Class="rtnews.DutyPage">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <StackLayout Padding="60, 2, 60, 15">
-                <Image Source="{Binding DutyUrl}" HeightRequest="340" Aspect="Fill" />
+        <StackLayout>
+            <StackLayout IsVisible="{Binding IsHide}" Padding="100, 200, 60, 15">
+                <Label Text="{i18n:Translate NoData}" FontAttributes="Bold" />
             </StackLayout>
-            <StackLayout Orientation="Vertical" Padding="80, 5, 60, 15">
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{i18n:Translate DutyLeader}" FontAttributes="Bold" />
-                    <Label Text=" : " FontAttributes="Bold" />
-                    <Label Text="{Binding LeaderName}" FontAttributes="Bold" />
-                    <Label Text="{Binding LeaderId}" FontAttributes="Bold" />
+            <StackLayout Orientation="Vertical" IsVisible="{Binding IsShow}"
+                         VerticalOptions="FillAndExpand">
+                <StackLayout Padding="60, 2, 60, 15">
+                    <Image Source="{Binding DutyUrl}" HeightRequest="340" Aspect="Fill" />
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{i18n:Translate LeaderPart}" FontAttributes="Bold" />
-                    <Label Text=" : " FontAttributes="Bold" />
-                    <Label Text="{Binding LeaderPart}" FontAttributes="Bold" />
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding DutyPart}" FontAttributes="Bold" />
-                    <Label Text=" : " FontAttributes="Bold" />
-                    <Label Text="{Binding DutyName}" FontAttributes="Bold" />
-                    <Label Text="{Binding DutyId}" FontAttributes="Bold" />
+                <StackLayout Orientation="Vertical" Padding="80, 5, 60, 10">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{i18n:Translate DutyLeader}" FontAttributes="Bold" />
+                        <Label Text=" : " FontAttributes="Bold" />
+                        <Label Text="{Binding Leader.Name}" FontAttributes="Bold" />
+                        <Label Text="{Binding Leader.ClerkId}" FontAttributes="Bold" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{i18n:Translate LeaderPart}" FontAttributes="Bold" />
+                        <Label Text=" : " FontAttributes="Bold" />
+                        <Label Text="{Binding Leader.Depart}" FontAttributes="Bold" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Duty.Depart}" FontAttributes="Bold" />
+                        <Label Text=" : " FontAttributes="Bold" />
+                        <Label Text="{Binding Duty.Name}" FontAttributes="Bold" />
+                        <Label Text="{Binding Duty.ClerkId}" FontAttributes="Bold" />
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

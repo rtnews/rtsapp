@@ -9,11 +9,9 @@ namespace rtnews
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            if (null == PropertyChanged) return;
+
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -7,33 +7,78 @@ using Xamarin.Forms;
 
 namespace rtnews
 {
-    public class DutyModel : ObservableObject
+    public class DutyModel : ObservableObject, IDataModel
     {
-        void LoadValues()
+        public void RunRefresh()
+        {
+            Device.BeginInvokeOnMainThread(() => {
+                this.RunRefreshDutys();
+            });
+        }
+
+        public void RunLoading()
+        {
+        }
+
+        public void OnAppearing()
         {
             var dutyRep = DutyRep.Instance();
-            var leader = dutyRep.GetLeader();
-            var dpart = dutyRep.GetDpart();
-            if (null != leader)
+            dutyRep.RunRefreshValue();
+        }
+
+        private void RunRefreshDutys()
+        {
+            var dutyRep = DutyRep.Instance();
+            Leader = dutyRep.GetLeader();
+            Duty = dutyRep.GetDpart();
+            if (null != Leader)
             {
                 var config = UConfig.Instance();
                 mDutyUrl = config.ApiUrl + "Upload/Clerk/";
-                mDutyUrl += leader.Icon;
+                mDutyUrl += Leader.Icon;
                 mDutyUrl += ".png";
-
-                mLeaderId = leader.ClerkId;
-                mLeaderName = leader.Name;
-                mLeaderPart = leader.Depart;
-                mLeaderPhone = leader.Phone;
+                this.OnPropertyChanged("DutyUrl");
             }
-            if (dpart != null)
+
+            if ((null != Leader) 
+                && (null != Duty))
             {
-                mDutyId = dpart.ClerkId;
-                mDutyName = dpart.Name;
-                mDutyPart = dpart.Depart;
-                mDutyPhone = dpart.Phone;
+                IsShow = true;
+
+                this.OnPropertyChanged("Leader");
+                this.OnPropertyChanged("Duty");
+            }
+            else
+            {
+                IsShow = false;
             }
         }
+
+        public bool IsShow
+        {
+            get
+            {
+                return mIsShow;
+            }
+            set
+            {
+                if (mIsShow == value)
+                {
+                    return;
+                }
+                mIsShow = value;
+                this.OnPropertyChanged("IsHide");
+                this.OnPropertyChanged("IsShow");
+            }
+        }
+        public bool IsHide
+        {
+            get
+            {
+                return (!mIsShow);
+            }
+        }
+        bool mIsShow = false;
 
         public string DutyUrl
         {
@@ -43,68 +88,16 @@ namespace rtnews
             }
         }
 
-        public string LeaderId
+        public Dpart Leader
         {
-            get
-            {
-                return mLeaderId;
-            }
+            get;
+            set;
         }
 
-        public string LeaderName
+        public Dpart Duty
         {
-            get
-            {
-                return mLeaderName;
-            }
-        }
-
-        public string LeaderPart
-        {
-            get
-            {
-                return mLeaderPart;
-            }
-        }
-
-        public string LeaderPhone
-        {
-            get
-            {
-                return mLeaderPhone;
-            }
-        }
-
-        public string DutyId
-        {
-            get
-            {
-                return mDutyId;
-            }
-        }
-
-        public string DutyName
-        {
-            get
-            {
-                return mDutyName;
-            }
-        }
-
-        public string DutyPart
-        {
-            get
-            {
-                return mDutyPart;
-            }
-        }
-
-        public string DutyPhone
-        {
-            get
-            {
-                return mDutyPhone;
-            }
+            get;
+            set;
         }
 
         public INavigation Navigation
@@ -121,21 +114,14 @@ namespace rtnews
 
         public DutyModel()
         {
-            this.LoadValues();
+            var dutyRep = DutyRep.Instance();
+            dutyRep.SetDataModel(this);
+
+            this.RunRefreshDutys();
         }
 
         INavigation mNavigation;
 
         string mDutyUrl;
-
-        string mLeaderId;
-        string mLeaderName;
-        string mLeaderPart;
-        string mLeaderPhone;
-
-        string mDutyName;
-        string mDutyPart;
-        string mDutyId;
-        string mDutyPhone;
     }
 }

@@ -7,55 +7,64 @@
              xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions">
     <ContentPage.Content>
         <StackLayout>
-            <local:InfiniteListView x:Name="mListView"
+            <StackLayout IsVisible="{Binding IsHide}" Padding="100, 200, 60, 15">
+                <Label Text="{i18n:Translate NoData}" FontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout Padding="0, 2, 0, 0"
+                         IsVisible="{Binding IsShow}"
+                         VerticalOptions="FillAndExpand">
+                <local:InfiniteListView x:Name="mListView"
                                     IsPullToRefreshEnabled="True"
                                     ItemsSource="{Binding TextNewsList}"
                                     SelectItemCommand="{Binding SelectedNewsCommand}"
+                                    LoadMoreCommand="{Binding LoadNewsCommand}"
+                                    RefreshCommand="{Binding RefreshNewsCommand}"
+                                    IsRefreshing="{Binding IsRefreshing}"
                                     RowHeight="100">
-                <local:InfiniteListView.Header>
-                    <controls:CarouselViewControl x:Name="mCarouse"
+                    <local:InfiniteListView.Header>
+                        <controls:CarouselViewControl x:Name="mCarouse"
                                                   HeightRequest="160"
                                                   HorizontalOptions="Fill"
                                                   ShowIndicators="True"
-                                                  ItemsSource="{Binding ImageNewsList}"
-                                                  BackgroundColor="Red">
-                        <controls:CarouselViewControl.ItemTemplate>
-                            <DataTemplate>
-                                <Image Source="{Binding ImageUrl}">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding ImageClick}" NumberOfTapsRequired="1" />
-                                    </Image.GestureRecognizers>
-                                </Image>
-                            </DataTemplate>
-                        </controls:CarouselViewControl.ItemTemplate>
-                    </controls:CarouselViewControl>
-                </local:InfiniteListView.Header>
-                <local:InfiniteListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Vertical" Padding="10">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text=">>" FontAttributes="Bold" />
-                                    <Label Text="{Binding Title}" FontAttributes="Bold" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal">
+                                                  ItemsSource="{Binding ImageNewsList}">
+                            <controls:CarouselViewControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding ImageUrl}">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ImageClick}" NumberOfTapsRequired="1" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </DataTemplate>
+                            </controls:CarouselViewControl.ItemTemplate>
+                        </controls:CarouselViewControl>
+                    </local:InfiniteListView.Header>
+                    <local:InfiniteListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical" Padding="10">
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{i18n:Translate Count}" />
-                                        <Label Text="{Binding Count}" />
+                                        <Label Text=">>" FontAttributes="Bold" />
+                                        <Label Text="{Binding Title}" FontAttributes="Bold" />
                                     </StackLayout>
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                                        <Label Text="{i18n:Translate Time}" />
-                                        <Label Text="{Binding Time}" />
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{i18n:Translate Count}" />
+                                            <Label Text="{Binding Read}" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                            <Label Text="{i18n:Translate Time}" />
+                                            <Label Text="{Binding Time}" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <Label Text="{Binding Text}" />
                                     </StackLayout>
                                 </StackLayout>
-                                <StackLayout>
-                                    <Label Text="{Binding Text}" />
-                                </StackLayout>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </local:InfiniteListView.ItemTemplate>
-            </local:InfiniteListView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </local:InfiniteListView.ItemTemplate>
+                </local:InfiniteListView>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

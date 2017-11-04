@@ -30,8 +30,11 @@ namespace rtnews.Droid
 
         protected override void OnAttachedToWindow()
         {
+            IInfoPage page = (IInfoPage)this.Element;
+            var infoTitle = page.InfoTitle;
+
             var mainActivity = (MainActivity)Context;
-            mainActivity.SetTextView("");
+            mainActivity.SetTextView(infoTitle);
 
             base.OnAttachedToWindow();
         }

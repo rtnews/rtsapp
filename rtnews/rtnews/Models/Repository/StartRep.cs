@@ -17,8 +17,6 @@ namespace rtnews
 
         public override void RunInit()
         {
-            base.RunInit();
-
             var homeRep = HomeRep.Instance();
             homeRep.RunInit();
 
@@ -31,7 +29,7 @@ namespace rtnews
             var dutyRep = DutyRep.Instance();
             dutyRep.RunInit();
 
-            this.RunHttpGet();
+            this.RunRefreshValue();
         }
 
         protected override string GetUrl()

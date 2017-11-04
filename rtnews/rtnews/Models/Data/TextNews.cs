@@ -2,7 +2,7 @@
 
 namespace rtnews
 {
-    public class TextNews : IStream, IEquatable<TextNews>
+    public class TextNews : ObservableObject, IStream, IEquatable<TextNews>
     {
         public void Serialize(ISerialize nSerialize, string nName, sbyte nCount)
         {
@@ -12,6 +12,7 @@ namespace rtnews
             nSerialize.RunNumber(ref mTitle, "Title");
             nSerialize.RunNumber(ref mText, "Text");
             nSerialize.RunNumber(ref mCount, "Count");
+            nSerialize.RunNumber(ref mRead, "Read");
             nSerialize.RunNumber(ref mTime, "Time");
         }
 
@@ -41,7 +42,7 @@ namespace rtnews
                 return mName;
             }
         }
-        protected string mName;
+        string mName;
 
         public string FileName
         {
@@ -50,7 +51,7 @@ namespace rtnews
                 return mFileName;
             }
         }
-        protected string mFileName;
+        string mFileName;
 
         public string Title
         {
@@ -78,6 +79,24 @@ namespace rtnews
             }
         }
         int mCount;
+
+        public int Read
+        {
+            get
+            {
+                return mRead;
+            }
+            set
+            {
+                if (mRead == value)
+                {
+                    return;
+                }
+                mRead = value;
+                this.OnPropertyChanged("Read");
+            }
+        }
+        int mRead;
 
         public string Time
         {

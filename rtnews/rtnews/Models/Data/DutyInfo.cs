@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace rtnews
 {
-    public class Dpart : IStream
+    public class Dpart : ObservableObject, IStream
     {
         public void Serialize(ISerialize nSerialize, string nName, sbyte nCount)
         {

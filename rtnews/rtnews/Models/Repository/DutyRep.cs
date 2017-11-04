@@ -10,9 +10,18 @@ namespace rtnews
     {
         public override void Serialize(ISerialize nSerialize)
         {
+            if (SerializeType.Refresh == LoadType)
+            {
+                mDpartList.Clear();
+                var dpartList = new List<Dpart>();
+                nSerialize.RunStream(dpartList, "Dparts", "Dpart");
+                mDpartList.AddRange(dpartList);
+            }
+            else
+            {
+                nSerialize.RunStream(mDpartList, "Dparts", "Dpart");
+            }
             base.Serialize(nSerialize);
-
-            nSerialize.RunStream(mDpartList, "DpartList", "Dpart");
         }
 
         public override string StreamName()
@@ -22,7 +31,7 @@ namespace rtnews
 
         protected override string GetUrl()
         {
-            return "api/news/GetDutyRep";
+            return "api/dpart/GetDutyRep";
         }
 
         public Dpart GetLeader()
@@ -51,7 +60,6 @@ namespace rtnews
             {
                 mDpartList.Add(i);
             }
-
             mUpdateTime = DateTime.Now;
 
             //this.RunSave();

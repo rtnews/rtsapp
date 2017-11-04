@@ -52,12 +52,14 @@
     <Compile Include="Controls\ObservableObject.cs" />
     <Compile Include="Core\Common\Singleton.cs" />
     <Compile Include="Core\Serialize\SerializeMgr.cs" />
+    <Compile Include="Controls\IDataModel.cs" />
     <Compile Include="Models\Data\DutyInfo.cs" />
     <Compile Include="Models\Repository\DutyRep.cs" />
     <Compile Include="Models\Model\DutyModel.cs" />
     <Compile Include="Pages\DutyPage.xaml.cs">
       <DependentUpon>DutyPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\IInfoPage.cs" />
     <Compile Include="Pages\InfoPage.xaml.cs">
       <DependentUpon>InfoPage.xaml</DependentUpon>
     </Compile>
@@ -83,6 +85,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Repository\StartRep.cs" />
+    <Compile Include="Core\Serialize\SerializeType.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Strings\StringTable.Designer.cs">
       <AutoGen>True</AutoGen>

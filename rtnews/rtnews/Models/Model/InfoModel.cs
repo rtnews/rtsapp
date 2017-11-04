@@ -7,9 +7,9 @@ using Xamarin.Forms;
 
 namespace rtnews
 {
-    public class InfoModel : ObservableObject
+    public class InfoModel
     {
-        void LoadValues(ImageNews nImageNews)
+        void RunLoadInfos(ImageNews nImageNews)
         {
             var uconfig = UConfig.Instance();
             string path = uconfig.ApiUrl + "Upload/ImageNews/";
@@ -32,7 +32,7 @@ namespace rtnews
 
         public InfoModel(ImageNews nImageNews)
         {
-            this.LoadValues(nImageNews);
+            this.RunLoadInfos(nImageNews);
         }
 
         List<string> mImageUrls = new List<string>();

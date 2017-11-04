@@ -10,12 +10,22 @@ namespace rtnews
     {
         protected override string GetUrl()
         {
-            return "api/values/GetNews0Rep";
+            return "api/news/GetNoticeRep";
         }
 
         public override string StreamName()
         {
             return "News0Rep.json";
+        }
+
+        public override string GetLoadUrl()
+        {
+            return "api/news/GetNoticePage";
+        }
+
+        public override string GetReadUrl()
+        {
+            return "api/news/UpdateNoticeRead";
         }
     }
 }

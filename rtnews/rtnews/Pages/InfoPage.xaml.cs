@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace rtnews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class InfoPage : ContentPage
+    public partial class InfoPage : ContentPage, IInfoPage
     {
         public InfoPage(ImageNews nImageNews)
         {
@@ -18,5 +18,7 @@ namespace rtnews
 
             mListView.BindingContext = new InfoModel(nImageNews);
         }
+
+        public string InfoTitle { get; set; }
     }
 }

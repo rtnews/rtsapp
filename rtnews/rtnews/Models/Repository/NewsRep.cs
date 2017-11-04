@@ -13,24 +13,74 @@ namespace rtnews
             return mImageNewsList.Skip(skip).Take(take);
         }
 
-        public override void Serialize(ISerialize nSerialize)
+        public abstract string GetReadUrl();
+
+        public void RunUpdateRead(string nId)
         {
-            nSerialize.RunStream(mImageNewsList, "ImageNewsList", "ImageNews");
+            var url = this.GetReadUrl();
+            var body = string.Format("{0}{1}{2}", "{\"Id\":\"", nId, "\"}");
+            this.RunLoadValue(url, body, 2);
         }
 
-        public virtual void RunInit(List<ImageNews> nImageNewsList)
+        public abstract string GetLoadUrl();
+
+        public void RunLoadNews(int nCount)
+        {
+            var count = mImageNewsList.Count - nCount;
+            if (count <= 15)
+            {
+                var url = this.GetLoadUrl();
+                var pageId = mImageNewsList.Count / 3;
+                var body = string.Format("{0}{1}{2}", "{\"PageId\":", pageId, "}");
+                this.RunLoadValue(url, body, 1);
+            }
+            if (null != mDataModel)
+            {
+                mDataModel.RunLoading();
+            }
+        }
+
+        public override void Serialize(ISerialize nSerialize)
+        {
+            if (SerializeType.Loading == LoadType)
+            {
+                var newsList = new List<ImageNews>();
+                nSerialize.RunStream(newsList, "ImageNewsList", "ImageNews");
+                foreach (var i in newsList)
+                {
+                    mImageNewsList.AddLast(i);
+                }
+            }
+            else if (SerializeType.Initing == LoadType)
+            {
+                nSerialize.RunStream(mImageNewsList, "ImageNewsList", "ImageNews");
+            }
+            else
+            {
+                mImageNewsList.Clear();
+                var newsList = new List<ImageNews>();
+                nSerialize.RunStream(newsList, "ImageNewsList", "ImageNews");
+                foreach (var i in newsList)
+                {
+                    mImageNewsList.AddFirst(i);
+                }
+            }
+            base.Serialize(nSerialize);
+        }
+
+        public void RunInit(List<ImageNews> nImageNewsList)
         {
             mImageNewsList.Clear();
 
             foreach (var i in nImageNewsList)
             {
-                mImageNewsList.Add(i);
+                mImageNewsList.AddLast(i);
             }
             mUpdateTime = DateTime.Now;
 
             //this.RunSave();
         }
 
-        protected List<ImageNews> mImageNewsList = new List<ImageNews>();
+        LinkedList<ImageNews> mImageNewsList = new LinkedList<ImageNews>();
     }
 }

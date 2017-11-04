@@ -6,37 +6,46 @@
              x:Class="rtnews.NewsPage">
     <ContentPage.Content>
         <StackLayout>
-            <local:InfiniteListView x:Name="mListView"
+            <StackLayout IsVisible="{Binding IsHide}" Padding="100, 200, 60, 15">
+                <Label Text="{i18n:Translate NoData}" FontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout IsVisible="{Binding IsShow}"
+                         VerticalOptions="FillAndExpand">
+                <local:InfiniteListView x:Name="mListView"
                                     IsPullToRefreshEnabled="True"
                                     ItemsSource="{Binding TextNewsList}"
                                     SelectItemCommand="{Binding SelectedNewsCommand}"
+                                    LoadMoreCommand="{Binding LoadNewsCommand}"
+                                    RefreshCommand="{Binding RefreshNewsCommand}"
+                                    IsRefreshing="{Binding IsRefreshing}"
                                     RowHeight="100">
-                <local:InfiniteListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Vertical" Padding="10">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text=">>" FontAttributes="Bold" />
-                                    <Label Text="{Binding Title}" FontAttributes="Bold" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal">
+                    <local:InfiniteListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical" Padding="10">
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{i18n:Translate Count}" />
-                                        <Label Text="{Binding Count}" />
+                                        <Label Text=">>" FontAttributes="Bold" />
+                                        <Label Text="{Binding Title}" FontAttributes="Bold" />
                                     </StackLayout>
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                                        <Label Text="{i18n:Translate Time}" />
-                                        <Label Text="{Binding Time}" />
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{i18n:Translate Count}" />
+                                            <Label Text="{Binding Read}" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                            <Label Text="{i18n:Translate Time}" />
+                                            <Label Text="{Binding Time}" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <Label Text="{Binding Text}" />
                                     </StackLayout>
                                 </StackLayout>
-                                <StackLayout>
-                                    <Label Text="{Binding Text}" />
-                                </StackLayout>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </local:InfiniteListView.ItemTemplate>
-            </local:InfiniteListView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </local:InfiniteListView.ItemTemplate>
+                </local:InfiniteListView>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

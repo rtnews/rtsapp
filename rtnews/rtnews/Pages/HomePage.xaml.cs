@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using CarouselView.FormsPlugin.Abstractions;
 
 namespace rtnews
 {
@@ -19,8 +20,8 @@ namespace rtnews
 
         protected override void OnAppearing()
         {
-            HomeModel homeModel = (HomeModel)BindingContext;
-            homeModel.ResetSelectNews();
+            var homeModel = (HomeModel)BindingContext;
+            homeModel.OnAppearing();
 
             base.OnAppearing();
         }
