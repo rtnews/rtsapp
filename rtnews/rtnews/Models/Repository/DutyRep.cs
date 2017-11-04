@@ -62,7 +62,7 @@ namespace rtnews
             }
             mUpdateTime = DateTime.Now;
 
-            //this.RunSave();
+            this.RunSave();
         }
 
         List<Dpart> mDpartList = new List<Dpart>();

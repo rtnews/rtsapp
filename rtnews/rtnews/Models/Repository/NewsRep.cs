@@ -48,22 +48,12 @@ namespace rtnews
                 nSerialize.RunStream(newsList, "ImageNewsList", "ImageNews");
                 foreach (var i in newsList)
                 {
-                    mImageNewsList.AddLast(i);
+                    mImageNewsList.Add(i);
                 }
-            }
-            else if (SerializeType.Initing == LoadType)
-            {
-                nSerialize.RunStream(mImageNewsList, "ImageNewsList", "ImageNews");
             }
             else
             {
-                mImageNewsList.Clear();
-                var newsList = new List<ImageNews>();
-                nSerialize.RunStream(newsList, "ImageNewsList", "ImageNews");
-                foreach (var i in newsList)
-                {
-                    mImageNewsList.AddFirst(i);
-                }
+                nSerialize.RunStream(mImageNewsList, "ImageNewsList", "ImageNews");
             }
             base.Serialize(nSerialize);
         }
@@ -74,13 +64,13 @@ namespace rtnews
 
             foreach (var i in nImageNewsList)
             {
-                mImageNewsList.AddLast(i);
+                mImageNewsList.Add(i);
             }
             mUpdateTime = DateTime.Now;
 
-            //this.RunSave();
+            this.RunSave();
         }
 
-        LinkedList<ImageNews> mImageNewsList = new LinkedList<ImageNews>();
+        List<ImageNews> mImageNewsList = new List<ImageNews>();
     }
 }

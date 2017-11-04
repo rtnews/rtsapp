@@ -32,7 +32,7 @@ namespace rtnews
             if (homeRep.NeedRefresh() || news0Rep.NeedRefresh()
                 || news1Rep.NeedRefresh() || dutyRep.NeedRefresh())
             {
-                //this.RunRefreshValue();
+                this.RunRefreshValue();
             }
         }
 

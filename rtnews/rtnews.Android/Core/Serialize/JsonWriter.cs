@@ -13,9 +13,10 @@ namespace rtnews.Droid
 		}
 
 		public override void RunNumbers(ref sbyte nValue, string nName)
-		{
-            mJsonValue[mJsonValue.Count] = nValue;
-		}
+        {
+            var jsonArray = (JsonArray)mJsonValue;
+            jsonArray.Add(nValue);
+        }
 
         public override void RunNumber(ref byte nValue, string nName)
         {
@@ -24,7 +25,8 @@ namespace rtnews.Droid
 
         public override void RunNumbers(ref byte nValue, string nName)
         {
-            mJsonValue[mJsonValue.Count] = nValue;
+            var jsonArray = (JsonArray)mJsonValue;
+            jsonArray.Add(nValue);
         }
 
         public override void RunNumber(ref short nValue, string nName)
@@ -34,7 +36,8 @@ namespace rtnews.Droid
 
 		public override void RunNumbers(ref short nValue, string nName)
         {
-            mJsonValue[mJsonValue.Count] = nValue;
+            var jsonArray = (JsonArray)mJsonValue;
+            jsonArray.Add(nValue);
         }
 
         public override void RunNumber(ref ushort nValue, string nName)
@@ -44,7 +47,8 @@ namespace rtnews.Droid
 
         public override void RunNumbers(ref ushort nValue, string nName)
         {
-            mJsonValue[mJsonValue.Count] = nValue;
+            var jsonArray = (JsonArray)mJsonValue;
+            jsonArray.Add(nValue);
         }
 
         public override void RunNumber(ref int nValue, string nName)
@@ -54,7 +58,8 @@ namespace rtnews.Droid
 
 		public override void RunNumbers(ref int nValue, string nName)
         {
-            mJsonValue[mJsonValue.Count] = nValue;
+            var jsonArray = (JsonArray)mJsonValue;
+            jsonArray.Add(nValue);
         }
 
         public override void RunNumber(ref uint nValue, string nName)
@@ -64,7 +69,8 @@ namespace rtnews.Droid
 
         public override void RunNumbers(ref uint nValue, string nName)
         {
-            mJsonValue[mJsonValue.Count] = nValue;
+            var jsonArray = (JsonArray)mJsonValue;
+            jsonArray.Add(nValue);
         }
 
         public override void RunNumber(ref long nValue, string nName)
@@ -74,7 +80,8 @@ namespace rtnews.Droid
 
 		public override void RunNumbers(ref long nValue, string nName)
         {
-            mJsonValue[mJsonValue.Count] = nValue;
+            var jsonArray = (JsonArray)mJsonValue;
+            jsonArray.Add(nValue);
         }
 
         public override void RunNumber(ref ulong nValue, string nName)
@@ -84,7 +91,8 @@ namespace rtnews.Droid
 
         public override void RunNumbers(ref ulong nValue, string nName)
         {
-            mJsonValue[mJsonValue.Count] = nValue;
+            var jsonArray = (JsonArray)mJsonValue;
+            jsonArray.Add(nValue);
         }
 
         public override void RunNumber(ref float nValue, string nName)
@@ -94,7 +102,8 @@ namespace rtnews.Droid
 
 		public override void RunNumbers(ref float nValue, string nName)
         {
-            mJsonValue[mJsonValue.Count] = nValue;
+            var jsonArray = (JsonArray)mJsonValue;
+            jsonArray.Add(nValue);
         }
 
 		public override void RunNumber(ref double nValue, string nName)
@@ -104,7 +113,8 @@ namespace rtnews.Droid
 
 		public override void RunNumbers(ref double nValue, string nName)
         {
-            mJsonValue[mJsonValue.Count] = nValue;
+            var jsonArray = (JsonArray)mJsonValue;
+            jsonArray.Add(nValue);
         }
 
 		public override void RunNumber(ref string nValue, string nName)
@@ -114,7 +124,8 @@ namespace rtnews.Droid
 
 		public override void RunNumbers(ref string nValue, string nName)
         {
-            mJsonValue[mJsonValue.Count] = nValue;
+            var jsonArray = (JsonArray)mJsonValue;
+            jsonArray.Add(nValue);
         }
 
         public override void RunBuffer(ref byte[] nValue, ref short nLength)
@@ -127,14 +138,15 @@ namespace rtnews.Droid
         {
             DateTime dateTime = Convert.ToDateTime(nValue);
 
-            mJsonValue[nName] = nValue;
+            mJsonValue[nName] = dateTime;
         }
 
         public override void RunTimes(ref ulong nValue, string nName)
         {
             DateTime dateTime = Convert.ToDateTime(nValue);
 
-            mJsonValue[mJsonValue.Count] = nValue;
+            var jsonArray = (JsonArray)mJsonValue;
+            jsonArray.Add(dateTime);
         }
 
         public override void PushStream(string nValue)
@@ -174,7 +186,8 @@ namespace rtnews.Droid
             mJsonValues.Push(mJsonValue);
 
             var jsonValue = new JsonObject();
-            mJsonValue[mJsonValue.Count] = jsonValue;
+            var jsonArray = (JsonArray)mJsonValue;
+            jsonArray.Add(jsonValue);
             mJsonValue = jsonValue;
 
             return true;
