@@ -57,15 +57,24 @@ namespace rtnews
             mRunHttp = false;
         }
 
+        public bool NeedRefresh()
+        {
+            if ((DateTime.Now - mUpdateTime).TotalMinutes < 10)
+            {
+                return false;
+            }
+            return true;
+        }
+
         static bool mRunHttp = false;
         public void RunRefreshValue()
         {
             if (mRunHttp) return;
 
-            //if ((DateTime.Now - mUpdateTime).TotalMinutes < 10)
-            //{
-            //    return;
-            //}
+            if (!this.NeedRefresh())
+            {
+                return;
+            }
 
             mRunHttp = true;
 
@@ -154,7 +163,7 @@ namespace rtnews
                 loadCallBack.WebRequest = request;
                 loadCallBack.Callback = callback;
 
-                request.BeginGetResponse(LoadValueCallback, request);
+                request.BeginGetResponse(LoadValueCallback, loadCallBack);
             }
             catch (WebException e)
             {

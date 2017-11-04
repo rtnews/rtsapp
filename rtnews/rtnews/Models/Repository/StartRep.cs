@@ -29,7 +29,11 @@ namespace rtnews
             var dutyRep = DutyRep.Instance();
             dutyRep.RunInit();
 
-            this.RunRefreshValue();
+            if (homeRep.NeedRefresh() || news0Rep.NeedRefresh()
+                || news1Rep.NeedRefresh() || dutyRep.NeedRefresh())
+            {
+                //this.RunRefreshValue();
+            }
         }
 
         protected override string GetUrl()

@@ -138,6 +138,7 @@ namespace rtnews
         {
             var homeRep = HomeRep.Instance();
             homeRep.RunUpdateRead(nImageNews.ID);
+            nImageNews.Read++;
 
             var infoPage = new InfoPage(nImageNews);
             infoPage.InfoTitle = StringTable.News0;
