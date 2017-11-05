@@ -8,7 +8,7 @@ namespace rtnews
 {
     public interface IDataModel
     {
-        void RunRefresh();
+        void RunRefresh(bool nRefresh);
 
         void RunLoading();
     }

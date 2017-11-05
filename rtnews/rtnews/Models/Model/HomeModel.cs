@@ -15,10 +15,18 @@ namespace rtnews
             this.RunSelectedCommand(sender);
         }
 
-        public void RunRefresh()
+        public void RunRefresh(bool nRefresh)
         {
             Device.BeginInvokeOnMainThread(() => {
-                this.RunRefreshNews();
+                if (!nRefresh)
+                {
+                    var error = StringTable.RefreshError;
+                    AlertEngine.Instance().ShowShort(error);
+                }
+                else
+                {
+                    this.RunRefreshNews();
+                }
                 if (IsRefreshing)
                 {
                     IsRefreshing = false;
@@ -45,7 +53,17 @@ namespace rtnews
             mTextNews = null;
 
             var homeRep = HomeRep.Instance();
-            homeRep.RunRefreshValue();
+            if (homeRep.NeedRefresh())
+            {
+                homeRep.RunRefreshValue();
+            }
+            else
+            {
+                if (IsRefreshing)
+                {
+                    IsRefreshing = false;
+                }
+            }
         }
 
         public void RunRefreshCommand(object sender)

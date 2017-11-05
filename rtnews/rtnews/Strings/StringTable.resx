@@ -141,6 +141,9 @@
   <data name="NoData" xml:space="preserve">
     <value>对不起，没有获取到数据</value>
   </data>
+  <data name="RefreshError" xml:space="preserve">
+    <value>数据刷新出错，请检查一下网络</value>
+  </data>
   <data name="Time" xml:space="preserve">
     <value>时间：</value>
   </data>

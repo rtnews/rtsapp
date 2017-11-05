@@ -36,7 +36,17 @@ namespace rtnews
             base.OnAppearing();
 
             var news0Rep = News0Rep.Instance();
-            news0Rep.RunRefreshValue();
+            if (news0Rep.NeedRefresh())
+            {
+                news0Rep.RunRefreshValue();
+            }
+            else
+            {
+                if (IsRefreshing)
+                {
+                    IsRefreshing = false;
+                }
+            }
         }
 
         protected override void RunRefreshNews()

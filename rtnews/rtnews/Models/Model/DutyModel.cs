@@ -1,4 +1,5 @@
-﻿using System;
+﻿using rtnews.Strings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,18 @@ namespace rtnews
 {
     public class DutyModel : ObservableObject, IDataModel
     {
-        public void RunRefresh()
+        public void RunRefresh(bool nRefresh)
         {
             Device.BeginInvokeOnMainThread(() => {
-                this.RunRefreshDutys();
+                if (!nRefresh)
+                {
+                    var error = StringTable.RefreshError;
+                    AlertEngine.Instance().ShowShort(error);
+                }
+                else
+                {
+                    this.RunRefreshDutys();
+                }
             });
         }
 
@@ -23,7 +32,10 @@ namespace rtnews
         public void OnAppearing()
         {
             var dutyRep = DutyRep.Instance();
-            dutyRep.RunRefreshValue();
+            if (dutyRep.NeedRefresh())
+            {
+                dutyRep.RunRefreshValue();
+            }
         }
 
         private void RunRefreshDutys()

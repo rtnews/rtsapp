@@ -30,7 +30,7 @@ namespace rtnews
             serializeMgr.SerializeJson(this, nText);
             if (null != mDataModel)
             {
-                mDataModel.RunRefresh();
+                mDataModel.RunRefresh(true);
             }
             mUpdateTime = DateTime.Now;
         }
@@ -49,10 +49,18 @@ namespace rtnews
             catch (WebException e)
             {
                 LogEngine.Instance().LogError(e.Message);
+                if (null != mDataModel)
+                {
+                    mDataModel.RunRefresh(false);
+                }
             }
             catch (Exception e)
             {
                 LogEngine.Instance().LogError(e.Message);
+                if (null != mDataModel)
+                {
+                    mDataModel.RunRefresh(false);
+                }
             }
             mRunHttp = false;
         }
@@ -90,6 +98,10 @@ namespace rtnews
             {
                 LogEngine.Instance().LogError(e.Message);
                 mRunHttp = false;
+                if (null != mDataModel)
+                {
+                    mDataModel.RunRefresh(false);
+                }
             }
         }
 

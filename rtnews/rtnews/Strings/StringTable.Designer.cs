@@ -134,6 +134,15 @@ namespace rtnews.Strings {
         }
         
         /// <summary>
+        ///   查找类似 数据刷新出错，请检查一下网络 的本地化字符串。
+        /// </summary>
+        internal static string RefreshError {
+            get {
+                return ResourceManager.GetString("RefreshError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 时间： 的本地化字符串。
         /// </summary>
         internal static string Time {

@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using CarouselView.FormsPlugin.Android;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
+using Xamarin.Forms;
 
 namespace rtnews.Droid
 {

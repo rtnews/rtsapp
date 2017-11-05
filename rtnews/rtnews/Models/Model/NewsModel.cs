@@ -1,4 +1,5 @@
-﻿using System;
+﻿using rtnews.Strings;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -10,10 +11,18 @@ namespace rtnews
     {
         public abstract string InfoTitle { get; }
 
-        public void RunRefresh()
+        public void RunRefresh(bool nRefresh)
         {
             Device.BeginInvokeOnMainThread(() => {
-                this.RunRefreshNews();
+                if (!nRefresh)
+                {
+                    var error = StringTable.RefreshError;
+                    AlertEngine.Instance().ShowShort(error);
+                }
+                else
+                {
+                    this.RunRefreshNews();
+                }
                 if (IsRefreshing)
                 {
                     IsRefreshing = false;
