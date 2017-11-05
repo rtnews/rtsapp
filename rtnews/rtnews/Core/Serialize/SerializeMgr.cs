@@ -27,10 +27,12 @@
                 return;
             }
             Reader reader = this.JsonFileReaderEvent();
-            reader.LoadFile(streamName);
-            reader.PushStream(nT.StreamName());
-            nT.Serialize(reader);
-            reader.PopStream(nT.StreamName());
+            if (reader.LoadFile(streamName))
+            {
+                reader.PushStream(nT.StreamName());
+                nT.Serialize(reader);
+                reader.PopStream(nT.StreamName());
+            }
         }
 
         public void SerializeWrite<T>(T nT) where T : IHeadstream
@@ -45,10 +47,12 @@
         public void SerializeTable<T>(T nT) where T : IHeadstream
         {
             Reader reader = this.TableFileReaderEvent();
-            reader.LoadFile(nT.StreamName());
-            reader.PushStream(nT.StreamName());
-            nT.Serialize(reader);
-            reader.PopStream(nT.StreamName());
+            if ( reader.LoadFile(nT.StreamName()) )
+            {
+                reader.PushStream(nT.StreamName());
+                nT.Serialize(reader);
+                reader.PopStream(nT.StreamName());
+            }
         }
 
         public event CreateReaderEvent TableFileReaderEvent;

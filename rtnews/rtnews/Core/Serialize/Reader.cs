@@ -1146,8 +1146,9 @@ namespace rtnews
         {
         }
 
-        public virtual void LoadFile(string nName)
+        public virtual bool LoadFile(string nName)
         {
+            return false;
         }
 
         static readonly string TAG = typeof(Reader).Name;

@@ -71,6 +71,10 @@ namespace rtnews
             {
                 return false;
             }
+            if ((DateTime.Now - mRefreshTime).TotalSeconds < 30)
+            {
+                return false;
+            }
             return true;
         }
 
@@ -84,6 +88,7 @@ namespace rtnews
                 return;
             }
 
+            mRefreshTime = DateTime.Now;
             mRunHttp = true;
 
             UConfig uConfig = UConfig.Instance();
@@ -246,6 +251,8 @@ namespace rtnews
         protected SerializeType LoadType = SerializeType.Initing;
 
         protected DateTime mUpdateTime = DateTime.MinValue;
+
+        protected DateTime mRefreshTime = DateTime.MinValue;
 
         protected IDataModel mDataModel = null;
     }

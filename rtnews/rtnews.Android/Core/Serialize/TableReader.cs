@@ -193,16 +193,22 @@ namespace rtnews.Droid
             return true;
         }
 
-        public override void LoadFile(string nName)
+        public override bool LoadFile(string nName)
         {
             var stream = UDirectory.Name2Stream(nName);
 
             TextReader textReader = new StreamReader(stream);
-            mJsonValue = JsonObject.Load(textReader);
+            var value = textReader.ReadToEnd();
+            if ( (value != "") && (null != value) )
+            {
+                mJsonValue = JsonObject.Parse (value);
 
-            mJsonValues.Push(mJsonValue);
-            mJsonValue = mJsonValue[0];
-            mIndex = 1;
+                mJsonValues.Push(mJsonValue);
+                mJsonValue = mJsonValue[0];
+                mIndex = 1;
+                return true;
+            }
+            return false;
         }
 
 		public TableReader()

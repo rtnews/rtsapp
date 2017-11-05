@@ -199,12 +199,18 @@ namespace rtnews.Droid
             return true;
         }
 
-        public override void LoadFile(string nName)
+        public override bool LoadFile(string nName)
         {
             string path = UDirectory.Name2Path(nName);
 
             TextReader textReader = new StreamReader(path);
-            mJsonValue = JsonObject.Load(textReader);
+            var value = textReader.ReadToEnd();
+            if ( ("" != value) && (null != value) )
+            {
+                mJsonValue = JsonObject.Parse(value);
+                return true;
+            }
+            return false;
         }
 
         public override void StringValue(string nValue)
