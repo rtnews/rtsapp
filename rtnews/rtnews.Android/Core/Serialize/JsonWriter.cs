@@ -213,10 +213,16 @@ namespace rtnews.Droid
         public override void SaveFile(string nName)
         {
             string path = UDirectory.Name2Path(nName);
-
-            StreamWriter streamWriter = new StreamWriter(path);
-            mJsonValue.Save(streamWriter);
-            streamWriter.Close();
+            try
+            {
+                StreamWriter streamWriter = new StreamWriter(path);
+                mJsonValue.Save(streamWriter);
+                streamWriter.Close();
+            }
+            catch (Exception e)
+            {
+                LogEngine.Instance().LogError(e.Message);
+            }
         }
 
         public override string StringValue()

@@ -67,8 +67,6 @@ namespace rtnews
                 mImageNewsList.Add(i);
             }
             mUpdateTime = DateTime.Now;
-
-            this.RunSave();
         }
 
         List<ImageNews> mImageNewsList = new List<ImageNews>();

@@ -20,6 +20,9 @@ namespace rtnews
                 }
                 else
                 {
+                    var dutyRep = DutyRep.Instance();
+                    dutyRep.RunSave();
+
                     this.RunRefreshDutys();
                 }
             });

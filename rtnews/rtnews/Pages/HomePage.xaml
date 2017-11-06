@@ -23,19 +23,25 @@
                                     RowHeight="100">
                     <local:InfiniteListView.Header>
                         <controls:CarouselViewControl x:Name="mCarouse"
-                                                  HeightRequest="160"
-                                                  HorizontalOptions="Fill"
-                                                  ShowIndicators="True"
-                                                  ItemsSource="{Binding ImageNewsList}">
+                                                      HeightRequest="210"
+                                                      HorizontalOptions="Fill"
+                                                      ShowIndicators="True"
+                                                      ItemsSource="{Binding ImageNewsList}"
+                                                      IsSwipingEnabled="True">
                             <controls:CarouselViewControl.ItemTemplate>
                                 <DataTemplate>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Image Source="{Binding ImageUrl}" Aspect="AspectFill">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding ImageClick}" NumberOfTapsRequired="1" />
-                                            </Image.GestureRecognizers>
-                                        </Image>
-                                        <Label Text="{Binding Title}"/>
+                                    <StackLayout Orientation="Vertical" Padding="10, 2, 10, 0"
+                                                 VerticalOptions="FillAndExpand">
+                                        <StackLayout>
+                                            <Image Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="180">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding ImageClick}" NumberOfTapsRequired="1" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label Text="{Binding Title}" FontAttributes="Bold"/>
+                                        </StackLayout>
                                     </StackLayout>
                                 </DataTemplate>
                             </controls:CarouselViewControl.ItemTemplate>

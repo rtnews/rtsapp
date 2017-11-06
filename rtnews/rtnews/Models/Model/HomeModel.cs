@@ -25,6 +25,9 @@ namespace rtnews
                 }
                 else
                 {
+                    var homeRep = HomeRep.Instance();
+                    homeRep.RunSave();
+
                     this.RunRefreshNews();
                 }
                 if (IsRefreshing)

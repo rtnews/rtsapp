@@ -11,6 +11,8 @@ namespace rtnews
     {
         public abstract string InfoTitle { get; }
 
+        public abstract void RunSave();
+
         public void RunRefresh(bool nRefresh)
         {
             Device.BeginInvokeOnMainThread(() => {
@@ -21,6 +23,8 @@ namespace rtnews
                 }
                 else
                 {
+                    this.RunSave();
+
                     this.RunRefreshNews();
                 }
                 if (IsRefreshing)

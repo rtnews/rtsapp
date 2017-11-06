@@ -18,6 +18,12 @@ namespace rtnews
             }
         }
 
+        public override void RunSave()
+        {
+            var news1Rep = News1Rep.Instance();
+            news1Rep.RunSave();
+        }
+
         public override void RunLoading()
         {
             Device.BeginInvokeOnMainThread(() => {

@@ -28,11 +28,12 @@ namespace rtnews
 
             var serializeMgr = SerializeMgr.Instance();
             serializeMgr.SerializeJson(this, nText);
+            mUpdateTime = DateTime.Now;
+
             if (null != mDataModel)
             {
                 mDataModel.RunRefresh(true);
             }
-            mUpdateTime = DateTime.Now;
         }
 
         void RefreshValueCallback(IAsyncResult asyncResult)
