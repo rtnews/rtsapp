@@ -21,7 +21,7 @@ namespace rtnews
                 return mImageUrl;
             }
         }
-
+        
         public event EventHandler ImageClickEvent;
         public void OnImageClicked()
         {

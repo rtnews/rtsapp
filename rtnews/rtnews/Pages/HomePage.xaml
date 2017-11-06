@@ -29,11 +29,14 @@
                                                   ItemsSource="{Binding ImageNewsList}">
                             <controls:CarouselViewControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding ImageUrl}">
-                                        <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding ImageClick}" NumberOfTapsRequired="1" />
-                                        </Image.GestureRecognizers>
-                                    </Image>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding ImageUrl}" Aspect="AspectFill">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding ImageClick}" NumberOfTapsRequired="1" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                        <Label Text="{Binding Title}"/>
+                                    </StackLayout>
                                 </DataTemplate>
                             </controls:CarouselViewControl.ItemTemplate>
                         </controls:CarouselViewControl>
